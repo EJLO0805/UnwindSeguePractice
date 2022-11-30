@@ -1,18 +1,20 @@
 //
-//  EditProfileTableViewController.swift
+//  DocumentEditProfileTableViewController.swift
 //  UnwindSeguePractice
 //
-//  Created by 羅以捷 on 2022/11/23.
+//  Created by 羅以捷 on 2022/11/29.
 //
 
 import UIKit
 
-class EditProfileTableViewController: UITableViewController {
-    
+class DocumentEditProfileTableViewController: UITableViewController {
     var profile : ProfileItem?
     var isMale = true
     var birthday: Date = Date.now
+    var isSelectingPhoto : Bool = false
     
+    @IBOutlet weak var selectedImageView: UIImageView!
+    @IBOutlet weak var selectedPhotoButton: UIButton!
     @IBOutlet weak var profileNameTextField: UITextField!
     @IBOutlet weak var profilePhoneTextField: UITextField!
     @IBOutlet weak var profileHeightTextField: UITextField!
@@ -21,6 +23,14 @@ class EditProfileTableViewController: UITableViewController {
     @IBOutlet weak var zodiacSignLabel: UILabel!
     
     @IBOutlet var genderButtons: [UIButton]!
+    
+    @IBAction func selectedPhotoButtonAction(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true)
+    }
+    
     
     @IBAction func maleButtonAction(_ sender: Any) {
         genderButtons[0].setImage(UIImage(named: "check"), for: .normal)
@@ -44,6 +54,10 @@ class EditProfileTableViewController: UITableViewController {
             isMale = profile.isMale
             profileBirthdayPicker.date = profile.birthday
             updateZodiacSign(profileBirthdayPicker.date)
+            if let imageData = profile.imageData{
+                selectedPhotoButton.setTitle(nil, for: .normal)
+                selectedImageView.image = UIImage(data: imageData)
+            }
         } else {
             updateZodiacSign(Date.now)
         }
@@ -111,7 +125,26 @@ class EditProfileTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let name = profileNameTextField.text, let phoneNumber = profilePhoneTextField.text, let height = Double(profileHeightTextField.text!), let weight = Double(profileWeightTextField.text!), let zodiac = zodiacSignLabel.text, !name.isEmpty, !phoneNumber.isEmpty {
-            profile = ProfileItem(name: name, phone: phoneNumber, height: height, weight: weight, birthday: birthday, zodiacSign: zodiac, isMale: isMale, imageData: nil)
+            var imageData : Data?
+            if isSelectingPhoto {
+                imageData = selectedImageView.image?.jpegData(compressionQuality: 0.8)
+            }
+            profile = ProfileItem(name: name, phone: phoneNumber, height: height, weight: weight, birthday: birthday, zodiacSign: zodiac, isMale: isMale, imageData: imageData)
         }
+    }
+
+}
+
+extension DocumentEditProfileTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        selectedPhotoButton.setTitle(nil, for: .normal)
+        let image = info[.originalImage] as! UIImage
+        selectedImageView.image = image
+        isSelectingPhoto = true
+        dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
     }
 }

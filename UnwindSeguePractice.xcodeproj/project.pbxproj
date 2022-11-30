@@ -20,6 +20,9 @@
 		53C8A45F292DE4E500E6B9D1 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8A45E292DE4E500E6B9D1 /* EditProfileTableViewController.swift */; };
 		53C8A462292DEAC800E6B9D1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8A461292DEAC800E6B9D1 /* Profile.swift */; };
 		53C8A4652931ED0800E6B9D1 /* ProfileDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8A4642931ED0800E6B9D1 /* ProfileDetailTableViewController.swift */; };
+		53C8A4AA2935ED7500E6B9D1 /* DocumentsProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8A4A92935ED7500E6B9D1 /* DocumentsProfileTableViewController.swift */; };
+		53C8A4AC2935ED9500E6B9D1 /* DocumentEditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8A4AB2935ED9500E6B9D1 /* DocumentEditProfileTableViewController.swift */; };
+		53C8A4AE293602A600E6B9D1 /* DocumentsDetailProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8A4AD293602A600E6B9D1 /* DocumentsDetailProfileTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		53C8A45E292DE4E500E6B9D1 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		53C8A461292DEAC800E6B9D1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		53C8A4642931ED0800E6B9D1 /* ProfileDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailTableViewController.swift; sourceTree = "<group>"; };
+		53C8A4A92935ED7500E6B9D1 /* DocumentsProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsProfileTableViewController.swift; sourceTree = "<group>"; };
+		53C8A4AB2935ED9500E6B9D1 /* DocumentEditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentEditProfileTableViewController.swift; sourceTree = "<group>"; };
+		53C8A4AD293602A600E6B9D1 /* DocumentsDetailProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsDetailProfileTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,9 @@
 				53C8A45C292DE4D300E6B9D1 /* ProfileTableViewController.swift */,
 				53C8A45E292DE4E500E6B9D1 /* EditProfileTableViewController.swift */,
 				53C8A4642931ED0800E6B9D1 /* ProfileDetailTableViewController.swift */,
+				53C8A4A92935ED7500E6B9D1 /* DocumentsProfileTableViewController.swift */,
+				53C8A4AB2935ED9500E6B9D1 /* DocumentEditProfileTableViewController.swift */,
+				53C8A4AD293602A600E6B9D1 /* DocumentsDetailProfileTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -279,11 +288,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				53C8A4652931ED0800E6B9D1 /* ProfileDetailTableViewController.swift in Sources */,
+				53C8A4AC2935ED9500E6B9D1 /* DocumentEditProfileTableViewController.swift in Sources */,
 				53C8A42A292DE48C00E6B9D1 /* AppDelegate.swift in Sources */,
+				53C8A4AE293602A600E6B9D1 /* DocumentsDetailProfileTableViewController.swift in Sources */,
 				53C8A462292DEAC800E6B9D1 /* Profile.swift in Sources */,
 				53C8A434292DE48C00E6B9D1 /* UnwindSeguePractice.xcdatamodeld in Sources */,
 				53C8A45D292DE4D300E6B9D1 /* ProfileTableViewController.swift in Sources */,
 				53C8A45F292DE4E500E6B9D1 /* EditProfileTableViewController.swift in Sources */,
+				53C8A4AA2935ED7500E6B9D1 /* DocumentsProfileTableViewController.swift in Sources */,
 				53C8A42C292DE48C00E6B9D1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

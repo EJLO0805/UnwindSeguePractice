@@ -15,19 +15,39 @@ struct ProfileItem : Codable {
     var birthday : Date
     var zodiacSign : ZodiacSign.RawValue
     var isMale : Bool
+    var imageData : Data?
     
-    static func loadProfiles() -> [ProfileItem]? {
+    static var fileManager = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    
+    static func loadProfiles() -> [Self]? {
         let decoder = JSONDecoder()
         let userDefault = UserDefaults.standard
         guard let data = userDefault.data(forKey: "profiles") else { return nil}
         return try? decoder.decode([ProfileItem].self, from: data)
     }
     
-    static func saveProfile(_ profiles : [ProfileItem]) {
+    static func saveProfile(_ profiles : [Self]) {
         let encoder = JSONEncoder()
         guard let data = try? encoder.encode(profiles) else {return}
         let userDefault = UserDefaults.standard
         userDefault.set(data, forKey: "profiles")
+    }
+    
+    static func documentsLoadProfiles() -> [Self]? {
+        let decoder = JSONDecoder()
+        let url = Self.fileManager.appendingPathComponent("profile")
+        if let data = try? Data(contentsOf: url), let profiles = try? decoder.decode([Self].self, from: data){
+            return profiles
+        } else {
+            return nil
+        }
+    }
+    
+    static func documentsSaveProfile(_ profiles : [Self]) {
+        let encoder = JSONEncoder()
+        guard let data = try? encoder.encode(profiles) else {return}
+        let url = Self.fileManager.appendingPathComponent("profile")
+        try! data.write(to:url )
     }
 }
 
