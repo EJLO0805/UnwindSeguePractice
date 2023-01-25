@@ -43,48 +43,16 @@ class EditProfileTableViewController: UITableViewController {
             zodiacSignLabel.text = profile.zodiacSign
             isMale = profile.isMale
             profileBirthdayPicker.date = profile.birthday
-            updateZodiacSign(profileBirthdayPicker.date)
+            zodiacSignLabel.text = ZodiacSign.updateZodiacSign(profileBirthdayPicker.date)
         } else {
-            updateZodiacSign(Date.now)
+            zodiacSignLabel.text = ZodiacSign.updateZodiacSign(Date.now)
         }
     }
     
-    func updateZodiacSign(_ date : Date){
-        let zodiac = ZodiacSign.self
-        let current = Calendar.current
-        let month = current.component(.month, from: date)
-        let day = current.component(.day, from: date)
-        switch month {
-            case 1 :
-                zodiacSignLabel.text = day > 20 ? zodiac.aquarius.rawValue : zodiac.capricorn.rawValue
-            case 2 :
-                zodiacSignLabel.text = day > 19 ? zodiac.pisces.rawValue : zodiac.aquarius.rawValue
-            case 3 :
-                zodiacSignLabel.text = day > 20 ? zodiac.aries.rawValue : zodiac.pisces.rawValue
-            case 4 :
-                zodiacSignLabel.text = day > 19 ? zodiac.taurus.rawValue : zodiac.aries.rawValue
-            case 5 :
-                zodiacSignLabel.text = day > 20 ? zodiac.gemini.rawValue : zodiac.taurus.rawValue
-            case 6 :
-                zodiacSignLabel.text = day > 21 ? zodiac.cancer.rawValue : zodiac.gemini.rawValue
-            case 7 :
-                zodiacSignLabel.text = day > 22 ? zodiac.leo.rawValue : zodiac.cancer.rawValue
-            case 8 :
-                zodiacSignLabel.text = day > 22 ? zodiac.virgo.rawValue : zodiac.leo.rawValue
-            case 9 :
-                zodiacSignLabel.text = day > 22 ? zodiac.libra.rawValue : zodiac.virgo.rawValue
-            case 10 :
-                zodiacSignLabel.text = day > 23 ? zodiac.scorpio.rawValue : zodiac.libra.rawValue
-            case 11 :
-                zodiacSignLabel.text = day > 21 ? zodiac.sagittarius.rawValue : zodiac.scorpio.rawValue
-            default :
-                zodiacSignLabel.text = day > 20 ? zodiac.capricorn.rawValue : zodiac.sagittarius.rawValue
-        }
-    }
     
     @IBAction func pickBirthday(_ sender: UIDatePicker) {
         birthday = sender.date
-        updateZodiacSign(birthday)
+        zodiacSignLabel.text = ZodiacSign.updateZodiacSign(birthday)
     }
     
     override func viewDidLoad() {

@@ -28,7 +28,7 @@ class DocumentsProfileTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToDocumentsProfileTableView(_ unwindSegue: UIStoryboardSegue) {
-        if let source = unwindSegue.source as? DocumentEditProfileTableViewController, let profile = source.profile {
+        if let source = unwindSegue.source as? DocumentsEditProfileTableViewController, let profile = source.profile {
             if let indexPath = selectedIndexPath{
                 profiles[indexPath.row] = profile
                 tableView.reloadRows(at: [indexPath], with: .none)
@@ -73,7 +73,7 @@ class DocumentsProfileTableViewController: UITableViewController {
         }
         
         let editFunction = UIContextualAction(style: .normal, title: "Edit") { action, view, completion in
-            if let editProfileController = self.storyboard?.instantiateViewController(withIdentifier: "documnetsEditProfile") as? DocumentEditProfileTableViewController{
+            if let editProfileController = self.storyboard?.instantiateViewController(withIdentifier: "documnetsEditProfile") as? DocumentsEditProfileTableViewController{
                 editProfileController.profile = self.profiles[indexPath.row]
                 self.selectedIndexPath = indexPath
                 self.navigationController?.pushViewController(editProfileController, animated: true)

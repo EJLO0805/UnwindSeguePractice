@@ -42,5 +42,4 @@ class ProfileDetailTableViewController: UITableViewController {
             editController.profile = profile
         }
     }
-
 }

@@ -1,22 +1,22 @@
 //
-//  DocumentsDetailProfileTableViewController.swift
+//  CoreDataProfileDetailTableViewController.swift
 //  UnwindSeguePractice
 //
-//  Created by 羅以捷 on 2022/11/29.
+//  Created by 羅以捷 on 2023/1/24.
 //
 
 import UIKit
 
-class DocumentsDetailProfileTableViewController: UITableViewController {
-
-    var profile : ProfileItem?
+class CoreDataProfileDetailTableViewController: UITableViewController {
+    
+    var profile : ProfileItemOfCoreData!
     
     @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profilePhoneLabel: UILabel!
     @IBOutlet weak var genderLebel: UILabel!
     @IBOutlet weak var birthdayLabel: UILabel!
-    @IBOutlet weak var ZodiacSignLabel: UILabel!
+    @IBOutlet weak var zodiacSignLabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     
@@ -28,7 +28,7 @@ class DocumentsDetailProfileTableViewController: UITableViewController {
             let dateformatter = DateFormatter()
             dateformatter.dateFormat = "yyyy-MM-dd"
             birthdayLabel.text = dateformatter.string(from: profile.birthday)
-            ZodiacSignLabel.text = profile.zodiacSign
+            zodiacSignLabel.text = profile.zodiacSign
             heightLabel.text = profile.height.description
             weightLabel.text = profile.weight.description
             if let imageData = profile.imageData{
@@ -36,14 +36,22 @@ class DocumentsDetailProfileTableViewController: UITableViewController {
             }
         }
     }
-    
+
     override func viewDidLoad() {
         updateUI()
         super.viewDidLoad()
+
     }
+
+
+
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let editController = segue.destination as? DocumentsEditProfileTableViewController {
-            editController.profile = profile
+        if let destination = segue.destination as? CoreDataEditProfileTableViewController {
+            destination.isNewProfile = false
+            destination.profile = profile
         }
     }
 
